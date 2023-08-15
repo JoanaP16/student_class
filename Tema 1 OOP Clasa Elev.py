@@ -36,26 +36,33 @@ class Student:
                     to_add.write(detailes)
 
     @classmethod
-    def get_file(cls, file):
+    def from_file(cls, file):
         students = []
         with open(file, 'r') as file_class:
-            lines = file.readlines()
+            lines = file_class.readlines()
             for line in lines:
-                name, surname = line.strip().split()
+                name, surname = line.strip().split(',')
                 student = cls(name, surname)
                 students.append(student)
+
         return students
 
+if __name__== "__main__":
 
-Popescu_Melania = Student('Popescu', 'Melania')
-Popescu_Melania.get_marks(100)
-Manole_Denisa = Student('Manole', 'Denisa')
-Manole_Denisa.get_marks(100)
-Popescu_Melania.get_marks(90)
-Manole_Denisa.get_marks(75)
-Manole_Denisa.student_average()
-Popescu_Melania.print_detailes()
-Manole_Denisa.print_detailes()
-Andreescu_Anemona = Student('Andreescu', 'Anemona')
+    Popescu_Melania = Student('Popescu', 'Melania')
+    Popescu_Melania.get_marks(100)
+    Manole_Denisa = Student('Manole', 'Denisa')
+    Manole_Denisa.get_marks(100)
+    Popescu_Melania.get_marks(90)
+    Manole_Denisa.get_marks(75)
+    Manole_Denisa.student_average()
+    Popescu_Melania.print_detailes()
+    Manole_Denisa.print_detailes()
+    Andreescu_Anemona = Student('Andreescu', 'Anemona')
 
-students_get_file = Student.get_file('student_average.txt')
+    students_get_file = Student.from_file('students.txt')
+    for student in students_get_file:
+        print(f'Studentul  are numele {student.name}')
+    print(students_get_file)
+
+
